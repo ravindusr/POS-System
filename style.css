@@ -49,6 +49,7 @@ body {
 #sidebar.expand {
     width: 260px;
     min-width: 260px;
+    
 }
 
 .toggle-btn {
@@ -139,4 +140,40 @@ a.sidebar-link:hover {
 #sidebar.expand .sidebar-link[data-bs-toggle="collapse"].collapsed::after {
     transform: rotate(45deg);
     transition: all .2s ease-out;
+}
+
+/*----------------------------------*/
+
+.container-fluid img{
+    width: 2rem;
+}
+
+.cus-navbar-brand{
+    font-weight: 800;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width:360px) {
+    
+    .navbar-brand{
+        font-size: 1rem;
+    }
+
+    .container-fluid img{
+        width: 1.5rem;
+    }
+
+   
 }
