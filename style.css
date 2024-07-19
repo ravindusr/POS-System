@@ -3,6 +3,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lilita+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap");
+
+
 
 ::after,
 ::before {
@@ -45,7 +48,7 @@ body {
     min-width: 70px;
     z-index: 1000;
     transition: all .25s ease-in-out;
-    background-color: #0e2238;
+    background-color: #8d6000;
     display: flex;
     flex-direction: column;
 }
@@ -70,6 +73,7 @@ body {
 
 .sidebar-logo {
     margin: auto 0;
+    font-family: "Lilita One", sans-serif;
 }
 
 .sidebar-logo a {
@@ -173,6 +177,7 @@ a.sidebar-link:hover {
 
 .categories{
     display: flex;
+    overflow: hidden;
     flex-direction: row;
     font-family: 'Courier New', Courier, monospace;
     font-size: 1.5rem;
@@ -199,13 +204,10 @@ a.sidebar-link:hover {
     border-radius: 50%;
 }
 
+
 .cat-items a img{
 
     width: 4rem;
-}
-
-.cat-items a{
-    
 }
 
 .categories img{
@@ -219,14 +221,159 @@ a.sidebar-link:hover {
     font-family: "Lilita One", sans-serif;
     font-weight: 400;
     font-style: normal;
+    
+}
+
+.trending-products {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-family: "Fira Sans Condensed", sans-serif;
+    border-bottom: 1px solid rgb(207, 207, 207);
+    margin-left: 1rem;
+    padding-bottom: 2rem;
 }
 
 
 
 
 /*------------------------------------------------*/
+ 
+ .card {
+    width: 295px;
+    overflow: hidden;
+    border-radius: 25px;
+    border: 1px solid lavender;
+    margin: 10px;
+    box-shadow: 5px 5px 15px 5px rgba(230, 230, 250, 1);
+ }
+ 
+ .card__image {
+    position: relative;
+    height: 140px;
+ }
+ .card__image > img {
+    max-width: 100%;
+    border-bottom-right-radius: 30px;
+    transform: rotate(10deg) translate(-15px, -55px);
+    position: absolute;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+ }
+ 
+ .card__info {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0px 30px 20px 30px;
+ }
+ .card__info h3 {
+    font-size: 18px;
+    font-weight: 700;
+ }
+ .card__info p {
+    font-size: 14px;
+    font-weight: 600;
+   
+ }
+ .card__info--price {
+    text-align: right;
+    color: orangered;
+    margin-bottom: 2rem;
+ }
+ .rect2 {
+    position: relative;
+    bottom: 315px;
+    right: 15px;
+    width: 325px;
+    height: 230px;
+    border: 1px solid lavender;
+    border-radius: 0 0px 80px 0;
+    background-image: url();
+    transform: rotate(10deg);
+    object-fit: cover;
+ }
+ .checked {
+    color: #ffd700;
+ }
+ 
+ ::-webkit-scrollbar {
+    width: 8px;
+ }
 
+ 
+ 
+ ::-webkit-scrollbar-thumb {
+    background: #cccccc;
+    border-radius: 10px;
+ }
+ 
+ ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+ }
+ 
+ .cssbuttons-io {
+    display: flex;
+    position: relative;
+    font-family: inherit;
+    font-size: 18px;
+    width: 2rem;
+    height: 2rem;
+    letter-spacing: 0.05em;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    background: linear-gradient(to right, #ffc423, #ffbd08);
+    color: ghostwhite;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+  }
 
+  .cssbuttons-io img{
+    width: 1rem;
+  }
+  
+  .cssbuttons-io span {
+    position: relative;
+    z-index: 10;
+    transition: color 0.4s;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.8em 1.2em 0.8em 1.05em;
+  }
+  
+  .cssbuttons-io::before,
+  .cssbuttons-io::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+  
+  .cssbuttons-io::before {
+    content: "";
+    background: #ffc65c;
+    width: 120%;
+    left: -10%;
+    transform: skew(30deg);
+    transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+  }
+  
+  .cssbuttons-io:hover::before {
+    transform: translate3d(100%, 0, 0);
+  }
+  
+  .cssbuttons-io:active {
+    transform: scale(0.95);
+  }
+  
 
 
 
