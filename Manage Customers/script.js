@@ -10,13 +10,24 @@ function addCustomer(event) {
     document.getElementById('customerForm').reset();
 }
 
+function removeCustomer(index) {
+    customers.splice(index, 1);
+    displayCustomers();
+    Swal.fire({
+        title: "Good job!",
+        text: "Removed Successfully.",
+        icon: "success"
+      });
+}
+
 // Display customers
 function displayCustomers() {
     const customerList = document.getElementById('customerList');
     customerList.innerHTML = '';
-    customers.forEach(customer => {
+    customers.forEach((customer, index) => {
         const customerDiv = document.createElement('div');
-        customerDiv.textContent = `${customer.name}-${customer.contact}-${customer.address}`;
+        customerDiv.classList.add('customer-item');
+        customerDiv.innerHTML = `${customer.name} - ${customer.contact} <button onclick="removeCustomer(${index})">Remove</button>`;
         customerList.appendChild(customerDiv);
     });
 }
