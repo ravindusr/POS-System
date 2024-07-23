@@ -6,7 +6,7 @@ hamBurger.addEventListener("click", function () {
 
 document.addEventListener('DOMContentLoaded',() => {
   const addToCartBtn = document.querySelectorAll('.cssbuttons-io');
-  const cartItemCount = document.querySelectorAll('.nav-link span');
+  const cartItemCount = document.getElementById('cart-count');
   const cartItemList = document.querySelectorAll('.cart-items');
   const cartTotal = document.querySelectorAll('.cart-total');
   const cartIcon = document.getElementById('cart-icon');
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded',() => {
     button.addEventListener('click', ()=> {
       const item ={
           name: document.querySelectorAll('.car__info--title h3')[index].textContent,
-          price: parseFloat(document.querySelectorAll('.card__info--price')[index].textContent.slice(1)),
+          price: parseFloat(document.querySelectorAll('.card__info--price p')[index].textContent.slice(1)),
           quantity: 1 ,
       };
 
@@ -37,58 +37,58 @@ document.addEventListener('DOMContentLoaded',() => {
 
       updateCart();
     });
+  });
 
-    function updateCart(){
-      updateCartItemCount(cartItems.length);
-      updateCartItemList();
-      updateCart();
-    }
+  function updateCart(){
+    updateCartItemCount(cartItems.length);
+    updateCartItemList();
+    updateCart();
+  }
 
-    function updateCartItemCount(count) {
-      cartItemCount.textContent = count ;
-    }
-    
-    function updateCartItemList(){
-      cartItemList.innerHTML = '';
-      cartItems.forEach((item, index)=> {
-        const cartItem =document.createElement('div');
-        cartItem.classList.add('cart-items','individual-cart-items');
-        cartItem.innerHTML = `
-        <span>(${item.quantity}x)${item.name}</span>
-        <span class="cart-item-price" >(${item.price}x)${item.quantity}.toFixed(2,)}
-        <button class="remove-btn" data-index="${index}"><i class="ph ph-trash"></i></button>
-        </span>
-        `;
+  function updateCartItemCount(count) {
+    cartItemCount.textContent = count ;
+  }
+  
+  function updateCartItemList() {
+    cartItemList.innerHTML = '';
+    cartItems.forEach((item, index)=> {
+      const cartItem =document.createElement('div');
+      cartItem.classList.add('cart-items','individual-cart-items');
+      cartItem.innerHTML = `
+      <span>(${item.quantity}x) ${item.name}</span>
+      <span class="cart-item-price"> $${item.price}x)${item.quantity}.toFixed(2,)}
+      <button class="remove-btn" data-index="${index}"><i class="ph ph-trash"></i></button>
+      </span>
+      `;
 
-        cartItemList.append(cartItem);
-      });
-
-      const removeButtons = document.querySelectorAll('.remove-btn');
-      removeButtons.forEach((button)=> {
-        button.addEventListener('click',(event)=>{
-          const index =event.target.dataset.index;
-          removeItemsFromCart(index);
-        });
-      });
-    }
-
-    function removeItemsFromCart(index){
-      const removeItem = cartItems.splice(index, 1)[0];
-      totalAmount -= removeItem.price * removeItem.quantity;
-      updateCart();
-    }
-
-    function updateCart(){
-      cartTotal.textContent = `$${totalAmount.toFixed(2)}`;
-    }
-
-    cartIcon.addEventListener('click',()=>{
-      rsidebar.classList.toggle('open');
+      cartItemList.append(cartItem);
     });
 
-    
-    closeButton.addEventListener('click', ()=>{
-      rsidebar.classList.remove('open');
+    const removeButtons = document.querySelectorAll('.remove-btn');
+    removeButtons.forEach((button)=> {
+      button.addEventListener('click',(event)=>{
+        const index =event.target.dataset.index;
+        removeItemsFromCart(index);
+      });
     });
+  }
+
+  function removeItemsFromCart(index){
+    const removedItem = cartItems.splice(index, 1)[0];
+    totalAmount -= removedItem.price * removedItem.quantity;
+    updateCart();
+  }
+
+  function updateCart(){
+    cartTotal.textContent = `$${totalAmount.toFixed(2)}`;
+  }
+
+  cartIcon.addEventListener('click',()=>{
+    rsidebar.classList.toggle('open');
+  });
+
+  
+  closeButton.addEventListener('click', ()=>{
+    rsidebar.classList.remove('open');
   });
 });

@@ -27,7 +27,7 @@ function displayCustomers() {
     customers.forEach((customer, index) => {
         const customerDiv = document.createElement('div');
         customerDiv.classList.add('customer-item');
-        customerDiv.innerHTML = `${customer.name} - ${customer.contact} <button onclick="removeCustomer(${index})">Remove</button>`;
+        customerDiv.innerHTML = `${customer.name} - ${customer.contact} - ${customer.address} <button class="removebtn" onclick="removeCustomer(${index})">Remove</button>`;
         customerList.appendChild(customerDiv);
     });
 }
