@@ -177,7 +177,7 @@
                                 alt="Salad" />
                         </div>
                         <div class="card__info">
-                            <div class="car__info--title">
+                            <div class="card__info--title">
                                 <h3 class="mt-5">Chicken Burger (Regular)</h3>
                                 <p>Fresh & sweet</p>
 
@@ -200,7 +200,7 @@
                                 alt="Salad" />
                         </div>
                         <div class="card__info">
-                            <div class="car__info--title">
+                            <div class="card__info--title">
                                 <h3 class="mt-5">Classic Burger (Large)</h3>
                                 <p>Fresh & sweet</p>
 
@@ -223,7 +223,7 @@
                                 alt="Salad" />
                         </div>
                         <div class="card__info">
-                            <div class="car__info--title">
+                            <div class="card__info--title">
                                 <h3 class="mt-5">Crispy Chicken Submarine</h3>
                                 <p>Fresh & sweet</p>
 
@@ -246,20 +246,18 @@
                                 alt="Salad" />
                         </div>
                         <div class="card__info">
-                            <div class="car__info--title">
+                            <div class="card__info--title">
                                 <h3 class="mt-5">Chicken n Cheese Pasta</h3>
                                 <p>Fresh & sweet</p>
-
                                 <button class="cssbuttons-io">
                                     <span>
-                                        <img src="img/empty-cart.png" class="add-to-cart"  alt="" srcset="">
+                                        <img src="img/empty-cart.png" class="add-to-cart" alt="" />
                                     </span>
                                 </button>
                             </div>
                             <div class="card__info--price">
-                                <p>$ 5</p>
+                                <p>$5</p>
                             </div>
-
                         </div>
                     </div>
 
@@ -273,13 +271,13 @@
                                 alt="Salad" />
                         </div>
                         <div class="card__info">
-                            <div class="car__info--title">
+                            <div class="card__info--title">
                                 <h3 class="mt-5">Special Horgie Submarine</h3>
                                 <p>Fresh & sweet</p>
 
                                 <button class="cssbuttons-io">
                                     <span>
-                                        <img src="img/empty-cart.png" class="add-to-cart"  alt="" srcset="">
+                                        <img src="img/empty-cart.png" class="add-to-cart" alt="" srcset="">
                                     </span>
                                 </button>
                             </div>
@@ -296,7 +294,7 @@
                                 alt="Salad" />
                         </div>
                         <div class="card__info">
-                            <div class="car__info--title">
+                            <div class="card__info--title">
                                 <h3 class="mt-5">Lemon Butter Pasta</h3>
                                 <p>Fresh & sweet</p>
 
@@ -319,7 +317,7 @@
                                 alt="Salad" />
                         </div>
                         <div class="card__info">
-                            <div class="car__info--title">
+                            <div class="card__info--title">
                                 <h3 class="mt-5">BBQ Chicken </h3>
                                 <p>Fresh & sweet</p>
 
@@ -342,13 +340,13 @@
                                 alt="Salad" />
                         </div>
                         <div class="card__info">
-                            <div class="car__info--title">
+                            <div class="card__info--title">
                                 <h3 class="mt-5">Coca-Cola</h3>
                                 <p>Fresh & sweet</p>
 
                                 <button class="cssbuttons-io">
                                     <span>
-                                        <img src="img/empty-cart.png" class="add-to-cart"  alt="" srcset="">
+                                        <img src="img/empty-cart.png" class="add-to-cart" alt="" srcset="">
                                     </span>
                                 </button>
                             </div>
@@ -362,35 +360,33 @@
                 </div>
             </div>
 
-            <!-- cart -->
-
         </div>
-
-
-
-
-
     </div>
 
+    <!-- cart -->
     <div class="r-sidebar" id="r-sidebar">
-
         <div class="r-sidebar-close">
             <i class="ph ph-x-circle"></i>
         </div>
-            <div class="cart-menu">
-                <h2>Cart</h2>
+        <div class="cart-menu">
+            <h2>Cart</h2>
+            <div class="cart-items-wrapper">
                 <div class="cart-items"></div>
             </div>
-
-            <div class="r-sidebar-footer">
-                <div class="total-amt">
-                    <h4>Total</h4>
-                    <div class="cart-total">$ 0.00</div>
-                </div>
-                <input class="checkout-btn" type="button" value="Checkout" />
-            </div>
         </div>
-
+        <div class="r-sidebar-footer">
+            <div class="total-amt mb-3">
+                <h4>Discount(%)</h4>
+                <div class="cart-dis">
+                    <input type="number" name="text" onclick="applyDiscount()" class="input-dis" autocomplete="off" id="discount" on min="0" max="100">
+                </div>
+            </div>
+            <div class="total-amt">
+                <h4>Total</h4>
+                <div class="cart-total" id="totalAmount">$0.00</div>
+            </div>
+            <input class="checkout-btn" type="button" value="Checkout" />
+        </div>
     </div>
 
 

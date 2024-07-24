@@ -1,34 +1,57 @@
-const customers = [];
+let customers = [];
+let editingIndex = null;
 
-function addCustomer(event) {
-    event.preventDefault();
-    const name = document.getElementById('customerName').value;
-    const contact = document.getElementById('customerContact').value;
-    const address = document.getElementById('customerAddress').value;
-    customers.push({ name, contact ,address});
-    displayCustomers();
-    document.getElementById('customerForm').reset();
-}
+function renderCustomerList() {
+    const customerList = document.getElementById("customerList");
+    customerList.innerHTML = ""; 
 
-function removeCustomer(index) {
-    customers.splice(index, 1);
-    displayCustomers();
-    Swal.fire({
-        title: "Good job!",
-        text: "Removed Successfully.",
-        icon: "success"
-      });
-}
-
-// Display customers
-function displayCustomers() {
-    const customerList = document.getElementById('customerList');
-    customerList.innerHTML = '';
     customers.forEach((customer, index) => {
-        const customerDiv = document.createElement('div');
-        customerDiv.classList.add('customer-item');
-        customerDiv.innerHTML = `${customer.name} - ${customer.contact} - ${customer.address} <button class="removebtn" onclick="removeCustomer(${index})">Remove</button>`;
-        customerList.appendChild(customerDiv);
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${customer.name}</td>
+            <td>${customer.email}</td>
+            <td>${customer.phone}</td>
+            <td class="actions">
+                <button class="edit" onclick="editCustomer(${index})">Update</button>
+                <button class="delete" onclick="deleteCustomer(${index})">Delete</button>
+            </td>
+        `;
+        customerList.appendChild(row);
     });
 }
 
+document.getElementById("customerForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+
+    if (editingIndex !== null) {
+        customers[editingIndex] = { name, email, phone };
+        editingIndex = null;
+    } else {
+        customers.push({ name, email, phone });
+    }
+
+    document.getElementById("customerForm").reset();
+    renderCustomerList();
+});
+
+
+function editCustomer(index) {
+    const customer = customers[index];
+    document.getElementById("name").value = customer.name;
+    document.getElementById("email").value = customer.email;
+    document.getElementById("phone").value = customer.phone;
+    editingIndex = index;
+}
+
+
+function deleteCustomer(index) {
+    customers.splice(index, 1);
+    renderCustomerList();
+}
+
+
+renderCustomerList();

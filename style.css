@@ -108,7 +108,7 @@ a.sidebar-link {
 
 a.sidebar-link:hover {
     background-color: rgba(255, 255, 255, .075);
-    border-left: 3px solid #3b7ddd;
+    border-left: 3px solid #ff6600;
 }
 
 .sidebar-item {
@@ -230,7 +230,7 @@ a.sidebar-link:hover {
     justify-content: space-around;
     flex-wrap: wrap;
     gap: 20px;
-    ont-familyf: "Fira Sans Condensed", sans-serif;
+    font-family: "Fira Sans Condensed", sans-serif;
     border-bottom: 1px solid rgb(207, 207, 207);
     margin-left: 1rem;
     padding-bottom: 2rem;
@@ -393,13 +393,13 @@ a.sidebar-link:hover {
 /*cart*/
 
 .r-sidebar{
-    width: 300px;
+    width: 350px;
     height: 100%;
     position: fixed;
     top: 0;
     /*right: 0;*/
-    right: -300px;
-    background-color: rgb(255, 251, 251);
+    right: -400px;
+    background-color: rgb(241, 241, 241);
     border-radius:  1.5rem 0 0 1.5rem;
     box-shadow: -4px 0 6px rgba(0,0,0,0.1);
     transition: right 0.3s ease-in-out;
@@ -426,6 +426,15 @@ a.sidebar-link:hover {
     gap: 10px;
     margin-top: 1rem; 
 }
+
+.cart-items-wrapper {
+    max-height: 800px; 
+    overflow-y: auto; 
+    margin-bottom: 20px; 
+    padding: 10px; 
+    border-radius: 5px; 
+}
+
 
 .individual-cart-items {
     display: flex;
@@ -456,12 +465,32 @@ a.sidebar-link:hover {
     padding: 15px 10px;
 }
 
-.cart-total{
+.cart-total,
+.cart-dis{
     font-size: 16px;
     color: black;
     font-weight: 600;
     
 }
+
+.input-dis {
+    border: none;
+    width: 5rem;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    background: #dfdfdf;
+    box-shadow: 20px 20px 60px #c5c5c5,
+           -20px -20px 60px #e7e7e7;
+    transition: 0.3s;
+}
+   
+.input-dis:focus {
+    outline-color: #e8e8e8;
+    background: #e8e8e8;
+    box-shadow: inset 20px 20px 60px #c5c5c5,
+           inset -20px -20px 60px #f0f0f0;
+    transition: 0.3s;
+   }
 
 .checkout-btn {
     margin-top: 20px;
@@ -482,19 +511,48 @@ a.sidebar-link:hover {
     background: #d17842;
     transition: all 200ms;
     width: 100%;
-  }
- .checkout-btn:active {
+}
+
+.checkout-btn:active {
     scale: 0.95;
-  }
- .checkout-btn:hover {
+}
+.checkout-btn:hover {
     color: #d17842;
     border: 2px solid #d17842;
     background: transparent;
-  }
+}
   
+.remove-btn{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: #d17842;
+    border: none;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+    cursor: pointer;
+    transition-duration: 0.3s;
+    overflow: hidden;
+    position: relative;
+    gap: 2px;
+}
 
+.remove-btn:hover {
+    transition-duration: 0.3s;
+    background-color: rgb(255, 167, 51);
+    align-items: center;
+    gap: 0;
+}
 
-
+.remove-btn:hover .bin-top {
+    transition-duration: 0.5s;
+    transform: rotate(160deg);
+}
+  
 
 
 
@@ -512,4 +570,10 @@ a.sidebar-link:hover {
     }
 
    
+}
+
+@media (max-height:783px){
+    .cart-items-wrapper {
+        max-height: 350px;
+    }
 }
