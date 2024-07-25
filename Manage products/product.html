@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+     <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <h1 class="head fw-bold">Manage Products</h1>
+    
+    <div class="container">
+        
+        <div class="form-container">
+            <h2 class="title">Add Products</h2>
+            <form id="productForm">
+                <input type="hidden" id="customerId" />
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="discription">Discription:</label>
+                    <input type="text" id="discription" required>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input type="text" id="price" required>
+                </div>
+                <div class="form-group">
+                    <label for="picture">Picture</label>
+                    <div class="input-group">
+                        <input type="file" class="form-control" id="picture" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                      </div>
+                </div>
+
+                <button type="submit">Save Product</button>
+            </form>
+        </div>
+        <div class="list-container">
+            <h2>Product List</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Picture</th>
+                        <th>Name</th>
+                        <th>Discription</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="productList"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>

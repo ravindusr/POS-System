@@ -37,7 +37,7 @@ document.getElementById("customerForm").addEventListener("submit", function(even
     document.getElementById("customerForm").reset();
     renderCustomerList();
 });
-
+z
 
 function editCustomer(index) {
     const customer = customers[index];

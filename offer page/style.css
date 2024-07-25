@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.card {
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-img-top {
+    object-fit: cover;
+    height: 200px;
+}
+
+.container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+
+h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffb452;
+    padding: 1.5rem;
+    font-weight: 800;
+}
