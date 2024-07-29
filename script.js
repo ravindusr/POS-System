@@ -125,6 +125,29 @@ document.addEventListener('DOMContentLoaded',() => {
 });
 
 
+document.addEventListener('DOMContentLoaded', function () {
+  const checkoutButton = document.getElementById('checkout-button');
+  const popup = document.getElementById('checkout-popup');
+  const closeButton = document.querySelector('.close-button');
+
+  // Show popup
+  checkoutButton.addEventListener('click', function () {
+      popup.style.display = 'block';
+  });
+
+  
+  closeButton.addEventListener('click', function () {
+      popup.style.display = 'none';
+  });
+
+  
+  const form = document.getElementById('checkout-form');
+  form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      alert('Order placed successfully!');
+      popup.style.display = 'none';
+  });
+});
 
 
 
