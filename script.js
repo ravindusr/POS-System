@@ -4,7 +4,7 @@ hamBurger.addEventListener("click", function () {
   document.querySelector("#sidebar").classList.toggle("expand");
 });
 
-document.addEventListener('DOMContentLoaded',() => {
+document.addEventListener('DOMContentLoaded', () => {
   const addToCartBtn = document.querySelectorAll('.cssbuttons-io');
   const cartItemCount = document.getElementById('cart-count');
   const cartItemList = document.querySelector('.cart-items');
@@ -13,16 +13,21 @@ document.addEventListener('DOMContentLoaded',() => {
   const rsidebar = document.getElementById('r-sidebar');
   const closeButton = document.querySelector('.r-sidebar-close');
   const discountInput = document.getElementById('discount');
+  const checkoutButton = document.getElementById('checkout-button');
+  const popup = document.getElementById('checkout-popup');
+  const checkoutCloseButton = document.querySelector('.close-button');
+  const form = document.getElementById('checkout-form');
+  const receiptButton = document.getElementById('receipt-button');
 
   let cartItems = [];
-  let totalAmount = 0 ;
+  let totalAmount = 0;
 
-  addToCartBtn.forEach((button , index) => {
-    button.addEventListener('click', ()=> {
-      const item ={
+  addToCartBtn.forEach((button, index) => {
+    button.addEventListener('click', () => {
+      const item = {
         name: document.querySelectorAll('.card__info--title h3')[index].textContent,
         price: parseFloat(document.querySelectorAll('.card__info--price p')[index].textContent.slice(1)), // Added p for paragraph element
-        quantity: 1 ,
+        quantity: 1,
       };
 
       const existingItem = cartItems.find(
@@ -83,11 +88,11 @@ document.addEventListener('DOMContentLoaded',() => {
     cartTotal.textContent = `$${totalAmount.toFixed(2)}`;
   }
 
-  cartIcon.addEventListener('click',()=>{
+  cartIcon.addEventListener('click', () => {
     rsidebar.classList.toggle('open');
   });
 
-  closeButton.addEventListener('click', ()=>{
+  closeButton.addEventListener('click', () => {
     rsidebar.classList.remove('open');
   });
 
@@ -95,7 +100,7 @@ document.addEventListener('DOMContentLoaded',() => {
     const discount = parseFloat(discountInput.value);
     const totalElement = document.getElementById('totalAmount');
     const currentTotal = totalAmount;
-  
+
     if (isNaN(discount) || discount < 0 || discount > 100) {
       if (discountInput.value.trim() === '') {
         totalElement.textContent = `$${totalAmount.toFixed(2)}`;
@@ -105,11 +110,11 @@ document.addEventListener('DOMContentLoaded',() => {
       discountInput.focus();
       return;
     }
-  
+
     const discountedTotal = currentTotal - (currentTotal * discount / 100);
-  
+
     totalElement.textContent = `$${discountedTotal.toFixed(2)}`;
-  
+
     discountInput.addEventListener('input', () => {
       if (discountInput.value === '') {
         totalElement.textContent = `$${totalAmount.toFixed(2)}`;
@@ -121,34 +126,61 @@ document.addEventListener('DOMContentLoaded',() => {
       applyDiscount();
     }
   });
-  
-});
 
 
-document.addEventListener('DOMContentLoaded', function () {
-  const checkoutButton = document.getElementById('checkout-button');
-  const popup = document.getElementById('checkout-popup');
-  const closeButton = document.querySelector('.close-button');
-
-  // Show popup
   checkoutButton.addEventListener('click', function () {
-      popup.style.display = 'block';
+    popup.style.display = 'block';
+  });
+  checkoutCloseButton.addEventListener('click', function () {
+    popup.style.display = 'none';
   });
 
-  
-  closeButton.addEventListener('click', function () {
-      popup.style.display = 'none';
-  });
-
-  
-  const form = document.getElementById('checkout-form');
   form.addEventListener('submit', function (event) {
-      event.preventDefault();
-      alert('Order placed successfully!');
-      popup.style.display = 'none';
+    event.preventDefault();
+    alert('Order placed successfully!');
+    popup.style.display = 'none';
+    clearCart();
   });
+
+  function clearCart() {
+    cartItems = [];
+    totalAmount = 0;
+    updateCart();
+  }
+
+  function generateReceipt() {
+    if (cartItems.length === 0) {
+      alert('Your cart is empty!');
+      return;
+    }
+
+    console.log('Generating receipt with items:', cartItems);
+
+    const receiptWindow = window.open('', '', 'width=600,height=400');
+    receiptWindow.document.write('<h1>Receipt</h1>');
+
+    
+    cartItems.forEach((item) => {
+      receiptWindow.document.write(`<p>${item.name} - $${item.price.toFixed(2)} x ${item.quantity} = $${(item.price * item.quantity).toFixed(2)}</p>`);
+    });
+
+    
+    const total = document.querySelector('.cart-total').textContent;
+    receiptWindow.document.write(`<p><strong>Total: ${total}</strong></p>`);
+
+    
+    const discount = parseFloat(discountInput.value);
+    if (!isNaN(discount) && discount > 0) {
+      receiptWindow.document.write(`<p><strong>Discount Applied: ${discount}%</strong></p>`);
+    }
+
+    receiptWindow.document.write('<button onclick="window.print()">Print Receipt</button>');
+    receiptWindow.document.write('<button onclick="window.close()">Close</button>');
+    receiptWindow.document.close();
+  }
+
+  
+  if (receiptButton) {
+    receiptButton.addEventListener('click', generateReceipt);
+  }
 });
-
-
-
-

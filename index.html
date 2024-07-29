@@ -368,7 +368,7 @@
         <div class="r-sidebar-close">
             <i class="ph ph-x-circle"></i>
         </div>
-        <div class="cart-menu">
+        <div class="cart-menu" id="cart">
             <h2>Cart</h2>
             <div class="cart-items-wrapper">
                 <div class="cart-items"></div>
@@ -378,49 +378,60 @@
             <div class="total-amt mb-3">
                 <h4>Discount(%)</h4>
                 <div class="cart-dis">
-                    <input type="number" name="text" onclick="applyDiscount()" class="input-dis" autocomplete="off" id="discount" on min="0" max="100">
+                    <input type="number" name="text" onclick="applyDiscount()" class="input-dis" autocomplete="off"
+                        id="discount" on min="0" max="100">
                 </div>
             </div>
             <div class="total-amt">
                 <h4>Total</h4>
                 <div class="cart-total" id="totalAmount">$0.00</div>
             </div>
-            <input class="checkout-btn"  type="button" id="checkout-button" value="Checkout" />
-        </div> 
+            <input class="checkout-btn" type="button" id="checkout-button" value="Checkout" />
+        </div>
     </div>
 
     <div id="checkout-popup" class="popup">
 
         <div class="popup-content">
-            <div class="cart-menu">
-                <h2>Cart</h2>
-                <div class="cart-items-wrapper">
-                    <div class="cart-items"></div>
-                </div>
-            </div>
-
+            
             <div>
                 <span class="close-button"><i class="ph ph-x-circle"></i></span>
                 <h2>Checkout</h2>
-               
+
                 <form id="checkout-form">
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" required autocomplete="off">
-                    
+
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email" required autocomplete="off">
 
                     <label for="contact">Phone Number:</label>
                     <input type="tel" id="contact" name="contact" required autocomplete="off">
-                    
+
                     <label for="address">Address:</label>
                     <input type="text" id="address" name="address" required autocomplete="off">
-                    
-                    <button class="checkout" type="submit">Submit</button>
+
+                    <label for="address">Payment Method:</label>
+                    <div class="pm">
+                        <label class="radio-button">
+                            <input type="radio" name="example-radio" value="option1">
+                            <span class="radio"></span>
+                            Cash
+                            </label>
+        
+                            <label class="radio-button">
+                                <input type="radio" name="example-radio" value="option2">
+                                <span class="radio"></span>
+                                Card
+                            </label>
+                    </div>
+
+
+                    <button id="receipt-button" class="checkout-submit" type="submit">Submit</button>
                 </form>
             </div>
         </div>
-        
+
     </div>
 
 
