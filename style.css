@@ -48,7 +48,7 @@ body {
     min-width: 70px;
     z-index: 1000;
     transition: all .25s ease-in-out;
-    background-color: #8d6000;
+    background-color: #d17842;
     display: flex;
     flex-direction: column;
 }
@@ -671,7 +671,6 @@ input {
     opacity: 1;
 }
   
-
 
 @media (max-width:360px) {
     

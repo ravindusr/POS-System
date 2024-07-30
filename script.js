@@ -150,37 +150,150 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function generateReceipt() {
     if (cartItems.length === 0) {
-      alert('Your cart is empty!');
-      return;
+        alert('Your cart is empty!');
+        return;
     }
 
     console.log('Generating receipt with items:', cartItems);
 
-    const receiptWindow = window.open('', '', 'width=600,height=400');
-    receiptWindow.document.write('<h1>Receipt</h1>');
+    // Generate unique order ID
+    const orderId = Math.floor(Math.random() * 1000000);
+
+
+    const customerName = document.getElementById('cusname').value;
+    const customerAddress = document.getElementById('cusaddress').value;
+    const customerEmail = document.getElementById('cusemail').value;
+    const customerPhone = document.getElementById('cusphone').value;
 
     
+    const now = new Date();
+    const date = now.toLocaleDateString(); 
+    const time = now.toLocaleTimeString();
+
+    const receiptWindow = window.open('', '', 'width=600,height=600');
+    receiptWindow.document.write(`
+        <html>
+        <head>
+            <style>
+                #invoice-POS {
+                    box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5);
+                    padding: 2mm;
+                    margin: 0 auto;
+                    width: 55mm;
+                    background: #FFF;
+                }
+                ::selection { background: #f31544; color: #FFF; }
+                ::moz-selection { background: #f31544; color: #FFF; }
+                h1 { font-size: 1.5em; color: #222; }
+                h2 { font-size: .9em; }
+                h3 { font-size: 1.2em; font-weight: 300; line-height: 2em; }
+                p { font-size: .7em; color: #666; line-height: 1.2em; }
+                #top, #mid, #bot { border-bottom: 1px solid #EEE; }
+                #top { min-height: 100px; }
+                #mid { min-height: 80px; }
+                #bot { min-height: 50px; }
+                .logo { height: 60px; width: 60px; background: url(https://cdn-icons-png.flaticon.com/512/5787/5787016.png) no-repeat; background-size: 60px 60px; }
+                .info { display: block; margin-left: 0; }
+                .title { float: right; }
+                .title p { text-align: right; }
+                table { width: 100%; border-collapse: collapse; }
+                td { padding: 5px 0; }
+                .tabletitle { padding: 5px; font-size: .5em; background: #EEE; }
+                .service { border-bottom: 1px solid #EEE; }
+                .item { width: 24mm; }
+                .itemtext { font-size: .5em; }
+                #legalcopy { margin-top: 5mm; }
+                .receipt-info { margin-bottom: 10px; }
+            </style>
+        </head>
+        <body>
+            <div id="invoice-POS">
+                <center id="top">
+                    <div class="logo"></div>
+                    <div class="info">
+                        <h2>MOS-Buggers</h2>
+                    </div>
+                </center>
+
+                <!-- Order ID and Date/Time -->
+                <div class="receipt-info">
+                    <p>Order ID: <strong>${orderId}</strong></p>
+                    <p>Date: <strong>${date}</strong></p>
+                    <p>Time: <strong>${time}</strong></p>
+                </div>
+                
+                <div id="mid">
+                    <div class="info">
+                        <h2>Customer Info</h2>
+                        <p>
+                            Name    : ${customerName}<br>
+                            Address : ${customerAddress}<br>
+                            Email   : ${customerEmail}<br>
+                            Phone   : ${customerPhone}<br>
+                        </p>
+                    </div>
+                </div>
+                
+                <div id="bot">
+                    <div id="table">
+                        <table>
+                            <tr class="tabletitle">
+                                <td class="item"><h2>Item</h2></td>
+                                <td class="Hours"><h2>Qty</h2></td>
+                                <td class="Rate"><h2>Sub Total</h2></td>
+                            </tr>
+    `);
+
+    let totalAmount = 0; 
     cartItems.forEach((item) => {
-      receiptWindow.document.write(`<p>${item.name} - $${item.price.toFixed(2)} x ${item.quantity} = $${(item.price * item.quantity).toFixed(2)}</p>`);
+        const subTotal = (item.price * item.quantity).toFixed(2);
+        totalAmount += parseFloat(subTotal); 
+        receiptWindow.document.write(`
+            <tr class="service">
+                <td class="tableitem"><p class="itemtext">${item.name}</p></td>
+                <td class="tableitem"><p class="itemtext">${item.quantity}</p></td>
+                <td class="tableitem"><p class="itemtext">$${subTotal}</p></td>
+            </tr>
+        `);
     });
 
-    
-    const total = document.querySelector('.cart-total').textContent;
-    receiptWindow.document.write(`<p><strong>Total: ${total}</strong></p>`);
+    const taxRate = 0.1; 
+    const taxAmount = totalAmount * taxRate;
+    const finalTotal = totalAmount + taxAmount;
 
-    
-    const discount = parseFloat(discountInput.value);
-    if (!isNaN(discount) && discount > 0) {
-      receiptWindow.document.write(`<p><strong>Discount Applied: ${discount}%</strong></p>`);
-    }
+    receiptWindow.document.write(`
+                            <tr class="tabletitle">
+                                <td></td>
+                                <td class="Rate"><h2>Discount</h2></td>
+                                <td class="payment"><h2>$${taxAmount.toFixed(2)}</h2></td>
+                            </tr>
+                            <tr class="tabletitle">
+                                <td></td>
+                                <td class="Rate"><h2>Total</h2></td>
+                                <td class="payment"><h2>$${finalTotal.toFixed(2)}</h2></td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div id="legalcopy">
+                        <p class="legal"><strong>Thank you for shopping with us!</strong></p>
+                    </div>
+                </div>
+                <button onclick="window.print()">Print Receipt</button>
+                <button onclick="window.close()" style="margin-top: 10px;">Close</button>
+            </div>
+            
+        </body>
+        </html>
+    `);
 
-    receiptWindow.document.write('<button onclick="window.print()">Print Receipt</button>');
-    receiptWindow.document.write('<button onclick="window.close()">Close</button>');
     receiptWindow.document.close();
-  }
+    clearCart();
+}
 
-  
-  if (receiptButton) {
+
+if (receiptButton) {
     receiptButton.addEventListener('click', generateReceipt);
-  }
+}
+
 });
