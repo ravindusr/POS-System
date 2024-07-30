@@ -41,6 +41,13 @@ document.getElementById("productForm").addEventListener("submit", function(event
 
     document.getElementById("productForm").reset();
     renderProductList();
+    Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Product Added Succesfully !",
+        showConfirmButton: false,
+        timer: 1000
+      });
 });
 
 function editProduct(index) {

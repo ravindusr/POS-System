@@ -137,7 +137,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   form.addEventListener('submit', function (event) {
     event.preventDefault();
-    alert('Order placed successfully!');
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Order Placed Succesfully !",
+      showConfirmButton: false,
+      timer: 1000
+    });
     popup.style.display = 'none';
     clearCart();
   });
@@ -150,7 +156,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function generateReceipt() {
     if (cartItems.length === 0) {
-        alert('Your cart is empty!');
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Your Cart is empty !",
+        showConfirmButton: false,
+        timer: 1000
+      });
         return;
     }
 

@@ -36,6 +36,13 @@ document.getElementById("customerForm").addEventListener("submit", function(even
 
     document.getElementById("customerForm").reset();
     renderCustomerList();
+    Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Customer Added Succesfully !",
+        showConfirmButton: false,
+        timer: 1000
+      });
 });
 z
 
