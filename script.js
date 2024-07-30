@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     button.addEventListener('click', () => {
       const item = {
         name: document.querySelectorAll('.card__info--title h3')[index].textContent,
-        price: parseFloat(document.querySelectorAll('.card__info--price p')[index].textContent.slice(1)), // Added p for paragraph element
+        price: parseFloat(document.querySelectorAll('.card__info--price p')[index].textContent.slice(1)),
         quantity: 1,
       };
 
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
       cartItem.classList.add('individual-cart-items');
       cartItem.innerHTML = `
         <span>(${item.quantity}x) ${item.name}</span>
-        <span class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}</span> <!-- Fixed template string syntax -->
+        <span class="cart-item-price">Rs.${(item.price * item.quantity).toFixed(2)}</span> <!-- Fixed template string syntax -->
         <button class="remove-btn" data-index="${index}"><i class="ph ph-trash"></i></button>
       `;
 
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function updateCartTotal() {
-    cartTotal.textContent = `$${totalAmount.toFixed(2)}`;
+    cartTotal.textContent = `Rs.${totalAmount.toFixed(2)}`;
   }
 
   cartIcon.addEventListener('click', () => {
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (isNaN(discount) || discount < 0 || discount > 100) {
       if (discountInput.value.trim() === '') {
-        totalElement.textContent = `$${totalAmount.toFixed(2)}`;
+        totalElement.textContent = `Rs.${totalAmount.toFixed(2)}`;
       } else {
         alert('Please enter a valid discount percentage (0-100)');
       }
@@ -113,11 +113,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const discountedTotal = currentTotal - (currentTotal * discount / 100);
 
-    totalElement.textContent = `$${discountedTotal.toFixed(2)}`;
+    totalElement.textContent = `Rs.${discountedTotal.toFixed(2)}`;
 
     discountInput.addEventListener('input', () => {
       if (discountInput.value === '') {
-        totalElement.textContent = `$${totalAmount.toFixed(2)}`;
+        totalElement.textContent = `Rs.${totalAmount.toFixed(2)}`;
       }
     });
   }
@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 .title p { text-align: right; }
                 table { width: 100%; border-collapse: collapse; }
                 td { padding: 5px 0; }
-                .tabletitle { padding: 5px; font-size: .5em; background: #EEE; }
+                .tabletitle { padding: 5px; font-size: .7em; background: #EEE; }
                 .service { border-bottom: 1px solid #EEE; }
                 .item { width: 24mm; }
                 .itemtext { font-size: .5em; }
@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <tr class="service">
                 <td class="tableitem"><p class="itemtext">${item.name}</p></td>
                 <td class="tableitem"><p class="itemtext">${item.quantity}</p></td>
-                <td class="tableitem"><p class="itemtext">$${subTotal}</p></td>
+                <td class="tableitem"><p class="itemtext">Rs.${subTotal}</p></td>
             </tr>
         `);
     });
@@ -278,12 +278,12 @@ document.addEventListener('DOMContentLoaded', () => {
                             <tr class="tabletitle">
                                 <td></td>
                                 <td class="Rate"><h2>Discount (${discountRate}%)</h2></td>
-                                <td class="payment"><h2>-$${discountAmount.toFixed(2)}</h2></td>
+                                <td class="payment"><h2>-Rs.${discountAmount.toFixed(2)}</h2></td>
                             </tr>
                             <tr class="tabletitle">
                                 <td></td>
                                 <td class="Rate"><h2>Total</h2></td>
-                                <td class="payment"><h2>$${finalTotal.toFixed(2)}</h2></td>
+                                <td class="payment"><h2>Rs.${finalTotal.toFixed(2)}</h2></td>
                             </tr>
                         </table>
                     </div>
