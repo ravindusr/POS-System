@@ -156,13 +156,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function generateReceipt() {
     if (cartItems.length === 0) {
-      Swal.fire({
-        position: "top-end",
-        icon: "error",
-        title: "Your Cart is empty !",
-        showConfirmButton: false,
-        timer: 1000
-      });
+        Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "Your Cart is empty !",
+            showConfirmButton: false,
+            timer: 1000
+        });
         return;
     }
 
@@ -171,15 +171,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Generate unique order ID
     const orderId = Math.floor(Math.random() * 1000000);
 
-
+  
     const customerName = document.getElementById('cusname').value;
     const customerAddress = document.getElementById('cusaddress').value;
     const customerEmail = document.getElementById('cusemail').value;
     const customerPhone = document.getElementById('cusphone').value;
 
-    
+
     const now = new Date();
-    const date = now.toLocaleDateString(); 
+    const date = now.toLocaleDateString();
     const time = now.toLocaleTimeString();
 
     const receiptWindow = window.open('', '', 'width=600,height=600');
@@ -191,7 +191,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5);
                     padding: 2mm;
                     margin: 0 auto;
-                    width: 55mm;
+                    width: 150mm;
+                    height: 200mm;
                     background: #FFF;
                 }
                 ::selection { background: #f31544; color: #FFF; }
@@ -256,10 +257,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             </tr>
     `);
 
-    let totalAmount = 0; 
+    let totalAmount = 0;
     cartItems.forEach((item) => {
         const subTotal = (item.price * item.quantity).toFixed(2);
-        totalAmount += parseFloat(subTotal); 
+        totalAmount += parseFloat(subTotal);
         receiptWindow.document.write(`
             <tr class="service">
                 <td class="tableitem"><p class="itemtext">${item.name}</p></td>
@@ -269,15 +270,15 @@ document.addEventListener('DOMContentLoaded', () => {
         `);
     });
 
-    const taxRate = 0.1; 
-    const taxAmount = totalAmount * taxRate;
-    const finalTotal = totalAmount + taxAmount;
+    const discountRate = parseFloat(document.getElementById('discount').value) || 0;
+    const discountAmount = totalAmount * (discountRate / 100);
+    const finalTotal = totalAmount - discountAmount;
 
     receiptWindow.document.write(`
                             <tr class="tabletitle">
                                 <td></td>
-                                <td class="Rate"><h2>Discount</h2></td>
-                                <td class="payment"><h2>$${taxAmount.toFixed(2)}</h2></td>
+                                <td class="Rate"><h2>Discount (${discountRate}%)</h2></td>
+                                <td class="payment"><h2>-$${discountAmount.toFixed(2)}</h2></td>
                             </tr>
                             <tr class="tabletitle">
                                 <td></td>
